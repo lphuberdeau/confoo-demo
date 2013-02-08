@@ -1,0 +1,19 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block title "Gremlin Query" %}
+
+{% block content %}
+    <h1>Gremlin Query</h1>
+
+	<form method="get" action="{{ path('demo_gremlin') }}">
+		<textarea name="q" style="width: 100%; font-size: 1.3em;" rows="6">{{ query }}</textarea>
+		<div>
+			<input type="submit" class="symfony-button-green" value="Run" />
+		</div>
+	</form>
+	
+	<hr>
+
+	{{ result | raw }}
+{% endblock %}
+

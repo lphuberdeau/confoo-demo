@@ -1,0 +1,14 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block title "Node " ~ node.id %}
+
+{% block content %}
+    <h1>Node {{ node.id }}</h1>
+
+	<dl>
+		{% for key, value in node.properties %}
+			<dt style="font-weight: bold;">{{ key }}:</dt>
+			<dd style="padding-bottom: 0.5em;">{{ value }}</dd>
+		{% endfor %}
+	</dl>
+{% endblock %}

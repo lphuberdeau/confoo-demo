@@ -1,0 +1,15 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block title "Relation " ~ relation.id %}
+
+{% block content %}
+    <h1>Relation {{ relation.id }}</h1>
+	From {{ start | raw }} to {{ end | raw }}
+
+	<dl>
+		{% for key, value in relation.properties %}
+			<dt style="font-weight: bold;">{{ key }}:</dt>
+			<dd style="padding-bottom: 0.5em;">{{ value }}</dd>
+		{% endfor %}
+	</dl>
+{% endblock %}
