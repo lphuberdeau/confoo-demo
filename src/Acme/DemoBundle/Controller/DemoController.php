@@ -33,7 +33,7 @@ class DemoController extends Controller
 
 		if (empty($query)) {
 			$query = <<<Q1
-g.v(1)
+g.v(0)
 Q1;
 		}
 
@@ -68,7 +68,7 @@ Q1;
 
 		if (empty($query)) {
 			$query = <<<Q1
-START root = node(1)
+START root = node(0)
 RETURN root
 Q1;
 		}
