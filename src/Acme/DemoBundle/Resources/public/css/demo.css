@@ -298,3 +298,11 @@ a.database {
     font-size: 4em;
     color: black;
 }
+
+dl dt {
+    font-weight: bold;
+}
+
+dl dd {
+    padding-bottom: 0.5em;
+}

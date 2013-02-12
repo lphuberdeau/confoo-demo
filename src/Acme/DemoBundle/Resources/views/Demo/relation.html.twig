@@ -3,7 +3,7 @@
 {% block title "Relation " ~ relation.id %}
 
 {% block content %}
-    <h1>Relation {{ relation.id }}</h1>
+    <h1>{{ relation.type }} {{ relation.id }}</h1>
 	From {{ start | raw }} to {{ end | raw }}
 
 	<dl>
@@ -13,3 +13,5 @@
 		{% endfor %}
 	</dl>
 {% endblock %}
+
+{% set code = code(_self) %}

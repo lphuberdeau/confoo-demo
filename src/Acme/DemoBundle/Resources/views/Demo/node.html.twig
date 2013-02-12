@@ -7,8 +7,14 @@
 
 	<dl>
 		{% for key, value in node.properties %}
-			<dt style="font-weight: bold;">{{ key }}:</dt>
-			<dd style="padding-bottom: 0.5em;">{{ value }}</dd>
+			<dt>{{ key }}:</dt>
+			<dd>{{ value }}</dd>
 		{% endfor %}
 	</dl>
+
+	{% if url %}
+		<a href="{{ url }}">Details</a>
+	{% endif %}
 {% endblock %}
+
+{% set code = code(_self) %}

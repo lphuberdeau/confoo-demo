@@ -1,0 +1,30 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block title "City" ~ city.id %}
+
+{% block content %}
+    <h1>{{ city.name }}</h1>
+
+	<dl>
+		<dt>ID:</dt>
+		<dd>{{ city.id }}</dd>
+		
+		<dt>Departures:</dt>
+		<dd>
+			{% for flight in city.departures %}
+				<div><a href="{{ path('managed_flight', {id: flight.id}) }}">{{ flight.destination.name }}</a></div>
+			{% endfor %}
+		</dd>
+		
+		<dt>Arrivals:</dt>
+		<dd>
+			{% for flight in city.arrivals %}
+				<div><a href="{{ path('managed_flight', {id: flight.id}) }}">{{ flight.origin.name }}</a></div>
+			{% endfor %}
+		</dd>
+	</dl>
+
+	<a href="{{ path('demo_node', {id: city.id}) }}">Node</a>
+{% endblock %}
+
+{% set code = code(_self) %}

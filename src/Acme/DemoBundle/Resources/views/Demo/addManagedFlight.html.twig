@@ -1,0 +1,15 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block title "Managed" %}
+
+{% block content %}
+    <h1>Managed</h1>
+
+	<form method="post" action="{{ path('managed_add') }}" {{ form_enctype(form) }}>
+		{{ form_widget(form) }}
+
+		<input type="submit" value="Add" />
+	</form>
+{% endblock %}
+
+{% set code = code(_self) %}
