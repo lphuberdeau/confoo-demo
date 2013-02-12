@@ -14,14 +14,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DemoController extends Controller
 {
-    /**
-     * @Route("/", name="_demo")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        return array();
-    }
+	/**
+	 * @Route("/", name="_demo")
+	 * @Template()
+	 */
+	public function indexAction()
+	{
+		return array();
+	}
 
 	/**
 	 * @Route("/gremlin", name="demo_gremlin")

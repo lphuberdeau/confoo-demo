@@ -292,3 +292,9 @@ ul#menu
     margin-right: 10px;
     display: inline;
 }
+
+a.database {
+    text-decoration: none;
+    font-size: 4em;
+    color: black;
+}

@@ -5,15 +5,18 @@ namespace Acme\DemoBundle\Twig\Extension;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
 use CG\Core\ClassUtils;
+use HireVoice\Neo4j\EntityManager;
 
 class DemoExtension extends \Twig_Extension
 {
     protected $loader;
     protected $controller;
+    protected $em;
 
-    public function __construct(FilesystemLoader $loader)
+    public function __construct(FilesystemLoader $loader, EntityManager $em)
     {
         $this->loader = $loader;
+        $this->em = $em;
     }
 
     public function setController($controller)
@@ -76,5 +79,17 @@ EOF;
     public function getName()
     {
         return 'demo';
+    }
+
+    /**
+     * Get globals variables
+     *
+     * @return array
+     */
+    public function getGlobals()
+    {
+        return array(
+            'database' => $this->em->findAny(0),
+        );
     }
 }

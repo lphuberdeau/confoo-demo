@@ -8,6 +8,7 @@
         <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="twig.loader" />
+            <argument type="service" id="neo4j.manager" />
         </service>
 
         <service id="acme.demo.listener" class="Acme\DemoBundle\EventListener\ControllerListener">
