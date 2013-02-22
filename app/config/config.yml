@@ -47,6 +47,9 @@ swiftmailer:
 services:
     neo4j.manager:
         class: "HireVoice\\Neo4j\\EntityManager"
-        args:
-            host: "localhost"
-            port: 7474
+        arguments:
+            -
+                host: "localhost"
+                port: 7474
+                annotation_reader: @annotation_reader
+
