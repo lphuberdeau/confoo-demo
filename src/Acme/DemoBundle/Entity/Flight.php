@@ -46,7 +46,7 @@ class Flight
 
 	function setCost($cost)
 	{
-		$this->cost = $cost;
+		$this->cost = (int) $cost;
 	}
 
 	function getDestination()

@@ -1,0 +1,24 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block title "Route" %}
+
+{% block content %}
+    <h1>Route</h1>
+
+	<form method="post" action="{{ path('managed_route') }}" {{ form_enctype(form) }}>
+		{{ form_widget(form) }}
+
+		<input type="submit" value="Show" />
+	</form>
+
+	{% for route in routes %}
+		<div>
+		{% for city in route.cities %}
+			{{ city.name }} -
+		{% endfor %}
+		<strong>{{ route.cost }}</strong>
+		</div>
+	{% endfor %}
+{% endblock %}
+
+{% set code = code(_self) %}

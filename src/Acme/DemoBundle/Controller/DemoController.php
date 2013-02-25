@@ -267,6 +267,64 @@ Q1;
 		);
 	}
 
+	/**
+	 * @Route("/managed/route", name="managed_route")
+	 * @Template
+	 */
+	public function showRoutesAction(Request $request)
+	{
+		$form = $this->createFormBuilder()
+			->add('from', 'text')
+			->add('to', 'text')
+			->getForm();
+
+		$routes = [];
+
+		if ($request->isMethod('POST')) {
+			$form->bindRequest($request);
+
+			if ($form->isValid()) {
+				$em = $this->get('neo4j.manager');
+
+				$cities = $em->getRepository('Acme\\DemoBundle\\Entity\\City');
+
+				$data = $form->getData();
+
+				$from = $cities->findOneByName($data['from']);
+				$to = $cities->findOneByName($data['to']);
+
+				if ($from && $to) {
+					$paths = $em->createCypherQuery()
+						->startWithNode('from', $from)
+						->startWithNode('to', $to)
+						->match('path = from -[*0..8]- to')
+						->end('path')
+						->getList();
+
+					foreach ($paths as $path) {
+						list($cities, $flights) = $path->getEntities()
+							->partition(function ($key, $entity) {
+								return $entity instanceof Entity\City;
+							});
+
+						$routes[] = [
+							'cities' => $cities,
+							'cost' => array_sum($flights->map(function ($flight) {
+								return $flight->getCost();
+							})->toArray()),
+						];
+					}
+				}
+			}
+		}
+
+		
+		return [
+			'form' => $form->createView(),
+			'routes' => $routes,
+		];
+	}
+
 	private function getFlightForm()
 	{
 		return $this->createFormBuilder()
